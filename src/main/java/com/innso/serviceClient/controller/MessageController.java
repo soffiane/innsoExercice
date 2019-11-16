@@ -2,6 +2,7 @@ package com.innso.serviceClient.controller;
 
 import com.innso.serviceClient.entities.DossierClient;
 import com.innso.serviceClient.entities.Message;
+import com.innso.serviceClient.exception.CustomErrorType;
 import com.innso.serviceClient.repository.DossierClientRepository;
 import com.innso.serviceClient.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Un controller REST permettant d'intercepter les requetes HTTP de l'application
@@ -39,6 +41,12 @@ public class MessageController {
         DossierClient dossierClient;
         if(message == null){
             return ResponseEntity.badRequest().body("Les champs du message doivent etre renseignés");
+        }
+        //on empeche de mettre des messages en double
+        Optional<Message> messageExistant = messageRepository.findByNameAndContent(message.getAuteur(), message.getMessage());
+        if(messageExistant.isPresent()){
+            return new ResponseEntity(new CustomErrorType("Il existe deja un message ecrit par " +
+                    message.getAuteur() + " contenant le message : "+message.getMessage()), HttpStatus.CONFLICT);
         }
         //on verifie si on a un dossier client existant a ce nom ou pas
         final List<DossierClient> dossierClientExistant = dossierClientRepository.findAll();
