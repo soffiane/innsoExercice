@@ -1,7 +1,24 @@
 package com.innso.serviceClient.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+/**
+ * Le Canal.
+ * @author soffiane boudissa
+ */
 public enum Canal {
-    MAIL, SMS, FACEBOOK, TWITTER;
+    /**
+     * Mail canal.
+     */
+    MAIL,
+    /**
+     * Sms canal.
+     */
+    SMS,
+    /**
+     * Facebook canal.
+     */
+    FACEBOOK,
+    /**
+     * Twitter canal.
+     */
+    TWITTER;
 }

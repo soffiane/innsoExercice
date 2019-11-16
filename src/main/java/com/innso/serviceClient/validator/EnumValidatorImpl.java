@@ -7,8 +7,14 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Classe validateur pour l'enum Canal.
+ */
 public class EnumValidatorImpl implements ConstraintValidator<EnumValidator, String> {
 
+    /**
+     * The Value list.
+     */
     List<String> valueList = null;
 
     @Override

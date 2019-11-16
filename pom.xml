@@ -9,9 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.innso</groupId>
-	<artifactId>serviceClient</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>serviceClient</name>
+	<artifactId>app</artifactId>
+	<name>app</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -67,6 +66,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

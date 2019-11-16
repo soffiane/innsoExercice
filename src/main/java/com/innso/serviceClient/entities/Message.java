@@ -4,13 +4,17 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.innso.serviceClient.validator.EnumValidator;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.util.Date;
 
+/**
+ * L'Objet Message.
+ * @author soffiane boudissa
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,9 +27,8 @@ public class Message {
     private long id;
 
     @Column
-    @NotNull
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @Past
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
+    @CreationTimestamp
     private Date dateMessage;
 
     @Column
@@ -38,7 +41,7 @@ public class Message {
 
     @Column
     @NotNull
-    @NotEmpty(message = "canal should not be null")
+    @NotEmpty(message = "le canal doit etre renseigné")
     @EnumValidator(enumClazz = Canal.class)
     private String canal;
 

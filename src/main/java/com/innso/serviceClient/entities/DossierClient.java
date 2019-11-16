@@ -6,9 +6,14 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+/**
+ * L'objet Dossier client.
+ * @author soffiane boudissa
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,21 +24,28 @@ public class DossierClient {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column
     private String reference;
+
     @Column
     @NotNull
     private String nomClient;
+
     @Column
     @NotNull
-    @JsonFormat(pattern="yyyy-MM-dd'T'hh:mm:ss")
-    @Past
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
     private Date dateOuverture;
 
     @OneToMany(mappedBy = "idDossier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Message> messages = new HashSet<>();
 
+    /**
+     * Ajouter un message au dossier.
+     *
+     * @param message le message à ajouter
+     */
     public void addMessage(Message message){
         message.setIdDossier(this);
         messages.add(message);
