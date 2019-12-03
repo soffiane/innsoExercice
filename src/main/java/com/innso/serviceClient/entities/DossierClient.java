@@ -3,6 +3,7 @@ package com.innso.serviceClient.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +19,6 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 public class DossierClient {
     @Id
@@ -26,6 +26,7 @@ public class DossierClient {
     private Long id;
 
     @Column
+    @NotNull
     private String reference;
 
     @Column

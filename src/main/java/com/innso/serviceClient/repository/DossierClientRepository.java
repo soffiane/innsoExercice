@@ -14,4 +14,7 @@ import java.util.Optional;
 public interface DossierClientRepository extends CrudRepository<DossierClient,Long> {
     @Override
     List<DossierClient> findAll();
+
+    @Query("from DossierClient where reference=?1")
+    Optional<DossierClient> findByReference(String reference);
 }
